@@ -48,4 +48,3 @@ resource "azurerm_linux_web_app" "example" {
   }
 }
 
-Envoyer un message à @Zaneku
