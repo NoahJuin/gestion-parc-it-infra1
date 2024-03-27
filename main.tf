@@ -22,7 +22,7 @@ resource "random_integer" "nom_entier" {
   max = 9999
 }
 
-resource "azurerm_app_service_plan" "example" {
+resource "azurerm_service_plan" "example" {
   name                = "asp-{votre_nom}-${random_integer.nom_entier}"
   location            = azurerm_resource_group.example.location
   resource_group_name = azurerm_resource_group.example.name
@@ -36,15 +36,12 @@ resource "azurerm_app_service_plan" "example" {
 }
 
 resource "azurerm_linux_web_app" "example" {
-  name                = "webapp-{Juin}-${random_integer.nom_entier}"
+  name                = "webapp-{votre_nom}-${random_integer.nom_entier}"
   location            = azurerm_resource_group.example.location
   resource_group_name = azurerm_resource_group.example.name
-  app_service_plan_id = azurerm_app_service_plan.example.id
+  app_service_plan_id = azurerm_service_plan.example.id
 
   site_config {
-    java_version         = "1.8"
-    java_container       = "TOMCAT"
-    java_container_version = "8.5"
+    linux_fx_version = "TOMCAT|8.5-java8" # Remplacez par la version de Java et le conteneur que vous souhaitez utiliser
   }
 }
-
