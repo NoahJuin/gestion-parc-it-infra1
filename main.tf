@@ -45,12 +45,10 @@ resource "azurerm_app_service" "webapp" {
   site_config {
     java_version    = "1.7"
     java_container  = "TOMCAT"
-  }
-site_config {
     application_stack {
         java_server = "JAVA"
         java_version = "java17"
-        java_server_version = "17"}}
-
+        java_server_version = "17"
+    }
+  }
 }
-
