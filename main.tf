@@ -1,11 +1,18 @@
 terraform {
   required_providers {
     azurerm = {
-      source = "hashicorp/azurerm"
+      source  = "hashicorp/azurerm"
       version = "~> 3.0.0"
     }
   }
   required_version = ">= 0.14.9"
+
+  backend "azurerm" {
+    resource_group_name  = "rg-noah-tfstate"
+    storage_account_name = "sanoahtfstate"
+    container_name       = "container-noah-tfstate"
+    key                  = "terraform.tfstate"
+  }
 }
 
 provider "azurerm" {
